@@ -123,4 +123,9 @@ public class WordListProcessorTest
         wordList = wordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid);
         assertEquals(wordList.size(), wordListProcessor.createHashMapFromFile(inputFileTwoWordsThreeByThreeGrid).size());
     }
+
+    @Test
+    public void CheckEmptyHashMapIfFileNameIsIncorrect(){
+        assertEquals(0, wordListProcessor.createHashMapFromFile(new File("fakePath.txt")).size());
+    }
 }

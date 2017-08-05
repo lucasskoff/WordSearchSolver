@@ -1,4 +1,4 @@
-public class WordSearchLiterals
+class WordSearchLiterals
 {
     final static String WORD_LIST_DELIMITER = ",";
 }
