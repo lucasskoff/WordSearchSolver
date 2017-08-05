@@ -13,11 +13,21 @@ import java.util.Scanner;
  */
 class WordListProcessor
 {
+    /**
+     * Wrapper for word list processor methods to make using this class cleaner to get final product.
+     * @param file
+     * @return
+     */
     HashMap<Character, List<Point>> createHashMapFromFile(File file){
         List<String> wordList = createArrayListOfWordsFromFile(file);
         return createHashMapOfWordFirstLetters(wordList);
     }
 
+    /**
+     * Word List processor wrapper using other methods to create ArrayList of Strings.
+     * @param file
+     * @return
+     */
     List<String> createArrayListOfWordsFromFile(File file){
         String wordList = readTopLineFromFileIntoString(file);
         return parseStringAsArrayList(wordList);
@@ -56,7 +66,7 @@ class WordListProcessor
      */
     List<String> parseStringAsArrayList(String inputString){
         Scanner scanner = new Scanner(inputString);
-        scanner.useDelimiter(",");
+        scanner.useDelimiter(WordSearchLiterals.WORD_LIST_DELIMITER);
         List<String> wordList = new ArrayList<>();
         while(scanner.hasNext()){
             wordList.add(scanner.next());

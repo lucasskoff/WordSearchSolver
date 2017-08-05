@@ -120,6 +120,7 @@ public class WordListProcessorTest
 
     @Test
     public void ReadTopLineFromFileContainingMultipleWordAndCreateHashMap(){
-
+        wordList = wordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid);
+        assertEquals(wordList.size(), wordListProcessor.createHashMapFromFile(inputFileTwoWordsThreeByThreeGrid).size());
     }
 }
