@@ -9,8 +9,12 @@ public class WordProcessor
 {
     public List<String> parseStringAsArrayList(String inputString){
         Scanner scanner = new Scanner(inputString);
+        scanner.useDelimiter(",");
         List<String> wordList = new ArrayList<>();
-        wordList.add(scanner.next());
+        while(scanner.hasNext()){
+            wordList.add(scanner.next());
+        }
+        scanner.close();
         return wordList;
     }
 }
