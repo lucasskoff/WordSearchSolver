@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WordSearchSolver.iml" filepath="$PROJECT_DIR$/.idea/modules/WordSearchSolver.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WordSearchSolver_main.iml" filepath="$PROJECT_DIR$/.idea/modules/WordSearchSolver_main.iml" group="WordSearchSolver" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WordSearchSolver_test.iml" filepath="$PROJECT_DIR$/.idea/modules/WordSearchSolver_test.iml" group="WordSearchSolver" />
+    </modules>
+  </component>
+</project>
