@@ -11,11 +11,15 @@ public class WordProcessorTest
 {
     WordProcessor wordProcessor;
     List<String> wordList;
+    RandomStringGenerator randomStringGenerator;
+    Random rg;
 
     @Before
     public void init(){
         wordProcessor = new WordProcessor();
         wordList = new ArrayList<>();
+        randomStringGenerator = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+        rg = new Random();
     }
 
     @Test
@@ -33,9 +37,7 @@ public class WordProcessorTest
 
     @Test
     public void ReadAnyNumberOfWordsFromStringSeperatedByCommasAndStoreAsList(){
-        Random rg = new Random();
         int numberOfWordsToRead = rg.nextInt(12);
-        RandomStringGenerator randomStringGenerator = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
         String inputLine = StringUtils.EMPTY;
         for(int i = 0; i < numberOfWordsToRead; i++){
             String randomWord = randomStringGenerator.generate(5);
