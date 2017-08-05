@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class WordProcessorTest
+public class WordListProcessorTest
 {
-    private WordProcessor wordProcessor;
+    private WordListProcessor wordListProcessor;
     private List<String> wordList;
     private RandomStringGenerator randomStringGenerator;
     private Random rg;
@@ -20,7 +20,7 @@ public class WordProcessorTest
 
     @Before
     public void init(){
-        wordProcessor = new WordProcessor();
+        wordListProcessor = new WordListProcessor();
         wordList = new ArrayList<>();
         randomStringGenerator = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
         rg = new Random();
@@ -31,14 +31,14 @@ public class WordProcessorTest
     @Test
     public void ReadSingleWordFromStringAndStoreAsList(){
         wordList.add(firstInputWord);
-        assertEquals(wordList, wordProcessor.parseStringAsArrayList("Bones"));
+        assertEquals(wordList, wordListProcessor.parseStringAsArrayList("Bones"));
     }
 
     @Test
     public void ReadTwoWordsFromStringSeparatedByCommaAndStoreAsList(){
         wordList.add(firstInputWord);
         wordList.add(secondInputWord);
-        assertEquals(wordList, wordProcessor.parseStringAsArrayList("Bones,Spock"));
+        assertEquals(wordList, wordListProcessor.parseStringAsArrayList("Bones,Spock"));
     }
 
     @Test
@@ -51,13 +51,27 @@ public class WordProcessorTest
             wordList.add(randomWord);
         }
 
-        assertEquals(wordList, wordProcessor.parseStringAsArrayList(inputLine));
+        assertEquals(wordList, wordListProcessor.parseStringAsArrayList(inputLine));
     }
 
     @Test
     public void CreateHashMapWithCorrectNumberOfKeysFromWordListNoDuplicateWords(){
         wordList.add(firstInputWord);
         wordList.add(secondInputWord);
-        assertEquals(wordList.size(), wordProcessor.createHashMapOfWordFirstLetters(wordList).size());
+        assertEquals(wordList.size(), wordListProcessor.createHashMapOfWordFirstLetters(wordList).size());
+    }
+
+    @Test
+    public void CreateHashMapWithCorrectNumberOfKeysFromWordListWithDuplicateWords(){
+        wordList.add(firstInputWord);
+        wordList.add(firstInputWord);
+        assertNotEquals(wordList.size(), wordListProcessor.createHashMapOfWordFirstLetters(wordList).size());
+    }
+
+    @Test
+    public void CreateHashMapWithEmptyListAsValue(){
+        wordList.add(firstInputWord);
+        List<Point> points = new ArrayList<Point>();
+        assertEquals(points, wordListProcessor.createHashMapOfWordFirstLetters(wordList).get(firstInputWord.charAt(0)));
     }
 }

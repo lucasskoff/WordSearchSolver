@@ -7,7 +7,7 @@ import java.util.Scanner;
 /**
  * A utility class to parse comma separated words and store data in approriate data structures.
  */
-class WordProcessor
+class WordListProcessor
 {
     /**
      * Creates a hashmap where key is first letter of each word in the word list and
