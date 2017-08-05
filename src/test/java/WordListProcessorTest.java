@@ -18,6 +18,8 @@ public class WordListProcessorTest
     private Random rg;
     private String firstInputWord;
     private String secondInputWord;
+    private String firstFileInputWord;
+    private String secondFileInputWord;
     private File inputFileSingleWordThreeByThreeGrid;
     private File inputFileTwoWordsThreeByThreeGrid;
 
@@ -25,10 +27,12 @@ public class WordListProcessorTest
     public void init(){
         wordListProcessor = new WordListProcessor();
         wordList = new ArrayList<>();
-        randomStringGenerator = new RandomStringGenerator.Builder().withinRange('a', 'z').build();
+        randomStringGenerator = new RandomStringGenerator.Builder().withinRange('A', 'Z').build();
         rg = new Random();
         firstInputWord = "Bones";
         secondInputWord = "Spock";
+        firstFileInputWord = "DOG";
+        secondFileInputWord = "CAT";
         inputFileSingleWordThreeByThreeGrid = new File("./resources/horizontalWordThreeByThreeGrid.txt");
         inputFileTwoWordsThreeByThreeGrid = new File("resources/horizontalWordsThreeByThreeGrid");
     }
@@ -49,14 +53,14 @@ public class WordListProcessorTest
     @Test
     public void ReadAnyNumberOfWordsFromStringSeparatedByCommasAndStoreAsList(){
         int numberOfWordsToRead = rg.nextInt(12);
-        String inputLine = StringUtils.EMPTY;
+        StringBuilder inputLine = new StringBuilder();
         for(int i = 0; i < numberOfWordsToRead; i++){
             String randomWord = randomStringGenerator.generate(5);
-            inputLine = inputLine.concat(randomWord + ",");
+            inputLine.append(randomWord).append(',');
             wordList.add(randomWord);
         }
 
-        assertEquals(wordList, wordListProcessor.parseStringAsArrayList(inputLine));
+        assertEquals(wordList, wordListProcessor.parseStringAsArrayList(inputLine.toString()));
     }
 
     @Test
@@ -91,6 +95,11 @@ public class WordListProcessorTest
     }
 
     @Test
+    public void ReadTopLineFromFileAndReturnEmptyStringIfFileIsInvalid(){
+        assertEquals(StringUtils.EMPTY, wordListProcessor.readTopLineFromFileIntoString(new File("notReal.txt")));
+    }
+
+    @Test
     public void ReadTopLineFromFileContainingSingleWordAndCreateList(){
         wordList.add("DOG");
         assertEquals(wordList, wordListProcessor.createArrayListOfWordsFromFile(inputFileSingleWordThreeByThreeGrid));
@@ -101,5 +110,16 @@ public class WordListProcessorTest
         wordList.add("DOG");
         wordList.add("CAT");
         assertEquals(wordList, wordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid));
+    }
+
+    @Test
+    public void ReadTopLineFromFileContainingSingleWordAndCreateHashMap(){
+        wordList = wordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid);
+        assertEquals(wordList.size(), wordListProcessor.createHashMapFromFile(inputFileTwoWordsThreeByThreeGrid).size());
+    }
+
+    @Test
+    public void ReadTopLineFromFileContainingMultipleWordAndCreateHashMap(){
+
     }
 }
