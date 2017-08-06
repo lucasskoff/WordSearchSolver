@@ -33,16 +33,16 @@ public class LetterGridProcessorTest
 			{'O','J','Y','E','U','L','N','C','C','L','Y','B','Z','U','H'},
 			{'W','Z','M','I','S','U','K','U','R','B','I','D','U','X','S'},
 			{'K','Y','L','B','Q','Q','P','M','D','F','C','K','E','A','B'}};
-	private List<String> wordsFromThreeByThreeGrid;
 	private HashMap<Character, List<Point>> threeByThreeMap;
+	private HashMap<Character, List<Point>> fourByFourMap;
 
 	@Before
 	public void Init(){
 		threeByThreeFile = new File("resources/horizontalWordsThreeByThreeGrid");
 		fourByFourFile = new File("resources/horizontalWordsFourByFourGrid.txt");
 		bigGridFromKataFile = new File("resources/bigGridFromKata");
-		wordsFromThreeByThreeGrid = WordListProcessor.createArrayListOfWordsFromFile(threeByThreeFile);
-		threeByThreeMap = WordListProcessor.createHashMapOfWordFirstLetters(wordsFromThreeByThreeGrid);
+		threeByThreeMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(threeByThreeFile));
+		fourByFourMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(fourByFourFile));
 	}
 
 	@Test
@@ -104,8 +104,14 @@ public class LetterGridProcessorTest
 
 	@Test
 	public void PointsInHashMapValueListAreCorrectForSimple3x3Grid(){
-		List<Point> correctPoints = new ArrayList<Point>();
+		List<Point> correctPoints = new ArrayList<>();
 		correctPoints.add(new Point(0,0));
 		assertEquals(correctPoints, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(threeByThreeMap, threeByThreeSolutionArray).get('D'));
+	}
+
+	@Test
+	public void SizeOfHashMapValueListFor4x4Grid(){
+		HashMap<Character, List<Point>> defendantMap = LetterGridProcessor.populateHashMapListOfPointsFirstLetter(fourByFourMap,fourByFourSolutionArray);
+		assertEquals(2, defendantMap.get('F').size() + defendantMap.get('G').size());
 	}
 }
