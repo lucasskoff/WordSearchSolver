@@ -25,7 +25,6 @@ public class WordListProcessorTest
 
     @Before
     public void init(){
-        wordListProcessor = new WordListProcessor();
         wordList = new ArrayList<>();
         randomStringGenerator = new RandomStringGenerator.Builder().withinRange('A', 'Z').build();
         rg = new Random();
@@ -40,14 +39,14 @@ public class WordListProcessorTest
     @Test
     public void ReadSingleWordFromStringAndStoreAsList(){
         wordList.add(firstInputWord);
-        assertEquals(wordList, wordListProcessor.parseStringAsArrayList("Bones"));
+        assertEquals(wordList, WordListProcessor.parseStringAsArrayList("Bones"));
     }
 
     @Test
     public void ReadTwoWordsFromStringSeparatedByCommaAndStoreAsList(){
         wordList.add(firstInputWord);
         wordList.add(secondInputWord);
-        assertEquals(wordList, wordListProcessor.parseStringAsArrayList("Bones,Spock"));
+        assertEquals(wordList, WordListProcessor.parseStringAsArrayList("Bones,Spock"));
     }
 
     @Test
@@ -60,55 +59,55 @@ public class WordListProcessorTest
             wordList.add(randomWord);
         }
 
-        assertEquals(wordList, wordListProcessor.parseStringAsArrayList(inputLine.toString()));
+        assertEquals(wordList, WordListProcessor.parseStringAsArrayList(inputLine.toString()));
     }
 
     @Test
     public void CreateHashMapWithCorrectNumberOfKeysFromWordListNoDuplicateWords(){
         wordList.add(firstInputWord);
         wordList.add(secondInputWord);
-        assertEquals(wordList.size(), wordListProcessor.createHashMapOfWordFirstLetters(wordList).size());
+        assertEquals(wordList.size(), WordListProcessor.createHashMapOfWordFirstLetters(wordList).size());
     }
 
     @Test
     public void CreateHashMapWithCorrectNumberOfKeysFromWordListWithDuplicateWords(){
         wordList.add(firstInputWord);
         wordList.add(firstInputWord);
-        assertNotEquals(wordList.size(), wordListProcessor.createHashMapOfWordFirstLetters(wordList).size());
+        assertNotEquals(wordList.size(), WordListProcessor.createHashMapOfWordFirstLetters(wordList).size());
     }
 
     @Test
     public void CreateHashMapWithEmptyListAsValue(){
         wordList.add(firstInputWord);
         List<Point> points = new ArrayList<>();
-        assertEquals(points, wordListProcessor.createHashMapOfWordFirstLetters(wordList).get(firstInputWord.charAt(0)));
+        assertEquals(points, WordListProcessor.createHashMapOfWordFirstLetters(wordList).get(firstInputWord.charAt(0)));
     }
 
     @Test
     public void ReadTopLineFromFileSingleWordAndCreateString(){
-        assertEquals("DOG", wordListProcessor.readTopLineFromFileIntoString(inputFileSingleWordThreeByThreeGrid));
+        assertEquals("DOG", WordListProcessor.readTopLineFromFileIntoString(inputFileSingleWordThreeByThreeGrid));
     }
 
     @Test
     public void ReadTopLineFromFileMultipleWordsAndCreateString(){
-        assertEquals("DOG,CAT",wordListProcessor.readTopLineFromFileIntoString(inputFileTwoWordsThreeByThreeGrid));
+        assertEquals("DOG,CAT",WordListProcessor.readTopLineFromFileIntoString(inputFileTwoWordsThreeByThreeGrid));
     }
 
     @Test
     public void ReadTopLineFromFileAndReturnEmptyStringIfFileIsInvalid(){
-        assertEquals(StringUtils.EMPTY, wordListProcessor.readTopLineFromFileIntoString(new File("notReal.txt")));
+        assertEquals(StringUtils.EMPTY, WordListProcessor.readTopLineFromFileIntoString(new File("notReal.txt")));
     }
 
     @Test
     public void ReadTopLineFromFileContainingSingleWordAndCreateList(){
         wordList.add("DOG");
-        assertEquals(wordList, wordListProcessor.createArrayListOfWordsFromFile(inputFileSingleWordThreeByThreeGrid));
+        assertEquals(wordList, WordListProcessor.createArrayListOfWordsFromFile(inputFileSingleWordThreeByThreeGrid));
     }
 
     @Test
     public void ReadTopLineFromFileContainingMultipleWordsAndCreateList(){
         wordList.add("DOG");
         wordList.add("CAT");
-        assertEquals(wordList, wordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid));
+        assertEquals(wordList, WordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid));
     }
 }
