@@ -2,7 +2,11 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.awt.*;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class LetterGridProcessorTest
 {
@@ -29,12 +33,16 @@ public class LetterGridProcessorTest
 			{'O','J','Y','E','U','L','N','C','C','L','Y','B','Z','U','H'},
 			{'W','Z','M','I','S','U','K','U','R','B','I','D','U','X','S'},
 			{'K','Y','L','B','Q','Q','P','M','D','F','C','K','E','A','B'}};
+	private List<String> wordsFromThreeByThreeGrid;
+	private HashMap<Character, List<Point>> threeByThreeMap;
 
 	@Before
 	public void Init(){
 		threeByThreeFile = new File("resources/horizontalWordsThreeByThreeGrid");
 		fourByFourFile = new File("resources/horizontalWordsFourByFourGrid.txt");
 		bigGridFromKataFile = new File("resources/bigGridFromKata");
+		wordsFromThreeByThreeGrid = WordListProcessor.createArrayListOfWordsFromFile(threeByThreeFile);
+		threeByThreeMap = WordListProcessor.createHashMapOfWordFirstLetters(wordsFromThreeByThreeGrid);
 	}
 
 	@Test
@@ -87,5 +95,10 @@ public class LetterGridProcessorTest
 	@Test
 	public void BigGridFromKataFileOutputsCorrect2DCharArray(){
 		assertArrayEquals(bigGridFromKata, LetterGridProcessor.parseGridFromFileAsCharArray(bigGridFromKataFile));
+	}
+
+	@Test
+	public void SizeOfHashMapValueListForLetterDFromSimple3x3Grid(){
+		assertEquals(1, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(threeByThreeMap, threeByThreeSolutionArray).get('D').size());
 	}
 }

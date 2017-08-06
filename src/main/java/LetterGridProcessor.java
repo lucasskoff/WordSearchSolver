@@ -1,9 +1,23 @@
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.HashMap;
 import java.util.Scanner;
 
 class LetterGridProcessor
 {
+	static HashMap<Character, List<Point>> populateHashMapListOfPointsFirstLetter(HashMap<Character, List<Point>> hMap, char[][] letterGrid){
+		for(int i = 0; i < letterGrid.length; i++){
+			for(int j = 0; j < letterGrid[i].length; j++){
+				if(hMap.containsKey(letterGrid[i][j])){
+					hMap.get(letterGrid[i][j]).add(new Point(i, j));
+				}
+			}
+		}
+		return hMap;
+	}
+
 	static char[][] parseGridFromFileAsCharArray(File file) {
 		try {
 			Scanner scanner = new Scanner(file);
