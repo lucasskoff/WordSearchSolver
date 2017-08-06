@@ -111,21 +111,4 @@ public class WordListProcessorTest
         wordList.add("CAT");
         assertEquals(wordList, wordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid));
     }
-
-    @Test
-    public void ReadTopLineFromFileContainingSingleWordAndCreateHashMap(){
-        wordList = wordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid);
-        assertEquals(wordList.size(), wordListProcessor.createHashMapFromFile(inputFileTwoWordsThreeByThreeGrid).size());
-    }
-
-    @Test
-    public void ReadTopLineFromFileContainingMultipleWordAndCreateHashMap(){
-        wordList = wordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid);
-        assertEquals(wordList.size(), wordListProcessor.createHashMapFromFile(inputFileTwoWordsThreeByThreeGrid).size());
-    }
-
-    @Test
-    public void CheckEmptyHashMapIfFileNameIsIncorrect(){
-        assertEquals(0, wordListProcessor.createHashMapFromFile(new File("fakePath.txt")).size());
-    }
 }
