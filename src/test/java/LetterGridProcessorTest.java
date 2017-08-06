@@ -8,20 +8,23 @@ import java.io.File;
 public class LetterGridProcessorTest
 {
 	private File threeByThreeInput;
-	private char[][] threeByThreeInputSolutionArray = {{'D','O','G'},{'C','A','T'},{'R','A','T'}};
+	private File fourByFourInput;
+	private char[][] threeByThreeInputArray = {{'D','O','G'},{'C','A','T'},{'R','A','T'}};
+	private char[][] fourByFourInputArray = {{'F','O','R','K'},{'E','Y','W','Z'},{'H','D','A','E'}};
 
 	@Before
 	public void Init(){
 		threeByThreeInput = new File("resources/horizontalWordsThreeByThreeGrid");
+		fourByFourInput = new File("resources/horizontalWordsFourByFourGrid.txt");
 	}
 
 	@Test
 	public void ThreeByThreeGridFromFileIsCorrectSize(){
-		try {
-			assertEquals(threeByThreeInputSolutionArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(threeByThreeInput).length);
-		}catch(NullPointerException e){
-			Assert.fail("NullPointerException thrown. FileNotFound in LetterGridProcessor.parseGridFromFileAsCharArray.");
-		}
+		assertEquals(threeByThreeInputArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(threeByThreeInput).length);
 	}
 
+	@Test
+	public void FourByFourGridFromFileIsCorrectSize(){
+		assertEquals(fourByFourInputArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(fourByFourInput).length);
+	}
 }
