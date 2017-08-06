@@ -101,4 +101,11 @@ public class LetterGridProcessorTest
 	public void SizeOfHashMapValueListForLetterDFromSimple3x3Grid(){
 		assertEquals(1, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(threeByThreeMap, threeByThreeSolutionArray).get('D').size());
 	}
+
+	@Test
+	public void PointsInHashMapValueListAreCorrectForSimple3x3Grid(){
+		List<Point> correctPoints = new ArrayList<Point>();
+		correctPoints.add(new Point(0,0));
+		assertEquals(correctPoints, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(threeByThreeMap, threeByThreeSolutionArray).get('D'));
+	}
 }
