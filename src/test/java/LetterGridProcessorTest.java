@@ -114,4 +114,20 @@ public class LetterGridProcessorTest
 		HashMap<Character, List<Point>> defendantMap = LetterGridProcessor.populateHashMapListOfPointsFirstLetter(fourByFourMap,fourByFourSolutionArray);
 		assertEquals(2, defendantMap.get('F').size() + defendantMap.get('G').size());
 	}
+
+	@Test
+	public void PointsInHashMapAreCorrectFor4x4Grid(){
+		assertEquals(initializeFourByFourHashMap(), LetterGridProcessor.populateHashMapListOfPointsFirstLetter(fourByFourMap, fourByFourSolutionArray));
+	}
+
+	private HashMap<Character, List<Point>> initializeFourByFourHashMap(){
+		HashMap<Character, List<Point>> correctHashMap = new HashMap<>();
+		List<Point> pointsForFork = new ArrayList<>();
+		pointsForFork.add(new Point(0, 0));
+		List<Point> pointsForGoto = new ArrayList<>();
+		pointsForGoto.add(new Point(0, 2));
+		correctHashMap.put('F', pointsForFork);
+		correctHashMap.put('G', pointsForGoto);
+		return correctHashMap;
+	}
 }

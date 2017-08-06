@@ -11,7 +11,7 @@ class LetterGridProcessor
 		for(int i = 0; i < letterGrid.length; i++){
 			for(int j = 0; j < letterGrid[i].length; j++){
 				if(hMap.containsKey(letterGrid[i][j])){
-					hMap.get(letterGrid[i][j]).add(new Point(i, j));
+					hMap.get(letterGrid[i][j]).add(new Point(j, i));
 				}
 			}
 		}
