@@ -53,6 +53,17 @@ public class LetterGridProcessorTest
 	}
 
 	@Test
+	public void InvalidFileCreates2DArrayOfLengthZero(){
+		assertEquals(0, LetterGridProcessor.parseGridFromFileAsCharArray(new File("invalidFile")).length);
+	}
+
+	@Test
+	public void InvalidNumberOfRowsAreIgnored(){
+		File invalidNumberOfRows = new File("resources/3x4GridWithMoreColumnsThanRows");
+		assertEquals(threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(invalidNumberOfRows));
+	}
+
+	@Test
 	public void ParseStringInto1DCharArray(){
 		assertArrayEquals(oneDSolutionArray, LetterGridProcessor.parseStringIntoCharArray(inputLine, 3));
 	}

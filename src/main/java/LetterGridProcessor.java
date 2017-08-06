@@ -14,12 +14,17 @@ class LetterGridProcessor
 			letterGrid[0] = parseStringIntoCharArray(topLineOfGrid, widthHeight);
 			int rowIndex = 1;
 			while(scanner.hasNextLine()){
-				letterGrid[rowIndex] = parseStringIntoCharArray(scanner.nextLine(), widthHeight);
-				rowIndex++;
+				if(rowIndex < widthHeight) {
+					letterGrid[rowIndex] = parseStringIntoCharArray(scanner.nextLine(), widthHeight);
+					rowIndex++;
+				}else
+				{
+					return letterGrid;
+				}
 			}
 			return letterGrid;
 		}catch(FileNotFoundException e){
-			e.printStackTrace();
+			System.out.println("parseGridFromFileAsCharArray caught FileNotFoundException on filename: " + file.getPath());
 			return new char[0][0];
 		}
 	}
