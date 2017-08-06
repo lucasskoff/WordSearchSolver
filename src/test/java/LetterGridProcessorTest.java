@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -13,9 +14,11 @@ public class LetterGridProcessorTest
 	private File threeByThreeFile;
 	private File fourByFourFile;
 	private File bigGridFromKataFile;
+	private File gridWhereAllLettersAreDFile;
 	private String inputLine = "D,O,G";
 	private char[][] threeByThreeSolutionArray = {{'D','O','G'},{'C','A','T'},{'R','A','T'}};
 	private char[][] fourByFourSolutionArray = {{'F','O','R','K'},{'E','Y','W','Z'},{'G','O','T','O'},{'H','D','A','E'}};
+	private char[][] allLettersDArray = {{'D','D','D'},{'D','D','D'},{'D','D','D'}};
 	private char[] oneDSolutionArray = {'D','O','G'};
 	private char[][] bigGridFromKata = {
 			{'U','M','K','H','U','L','K','I','N','V','J','O','C','W','E'},
@@ -35,14 +38,17 @@ public class LetterGridProcessorTest
 			{'K','Y','L','B','Q','Q','P','M','D','F','C','K','E','A','B'}};
 	private HashMap<Character, List<Point>> threeByThreeMap;
 	private HashMap<Character, List<Point>> fourByFourMap;
+	private HashMap<Character, List<Point>> allLettersDMap;
 
 	@Before
 	public void Init(){
 		threeByThreeFile = new File("resources/horizontalWordsThreeByThreeGrid");
 		fourByFourFile = new File("resources/horizontalWordsFourByFourGrid.txt");
 		bigGridFromKataFile = new File("resources/bigGridFromKata");
+		gridWhereAllLettersAreDFile = new File("resources/threeByThreegridWhereEveryLetterIsD");
 		threeByThreeMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(threeByThreeFile));
 		fourByFourMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(fourByFourFile));
+		allLettersDMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(gridWhereAllLettersAreDFile));
 	}
 
 	@Test
@@ -118,6 +124,16 @@ public class LetterGridProcessorTest
 	@Test
 	public void PointsInHashMapAreCorrectFor4x4Grid(){
 		assertEquals(initializeFourByFourHashMap(), LetterGridProcessor.populateHashMapListOfPointsFirstLetter(fourByFourMap, fourByFourSolutionArray));
+	}
+
+	@Test
+	public void PointsInHashMapAreCorrectWhenAllLettersAreD(){
+		HashMap<Character, List<Point>> correctHashMap = new HashMap<>();
+		Point[] correctPoints = {new Point(0,0), new Point(1,0), new Point(2, 0),
+								 new Point(0, 1), new Point(1, 1), new Point(2, 1),
+								 new Point(0, 2), new Point(1, 2), new Point(2, 2)};
+		correctHashMap.put('D', Arrays.asList(correctPoints));
+		assertEquals(correctHashMap, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(allLettersDMap, allLettersDArray));
 	}
 
 	private HashMap<Character, List<Point>> initializeFourByFourHashMap(){
