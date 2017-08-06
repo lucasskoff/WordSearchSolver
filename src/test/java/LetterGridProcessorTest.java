@@ -9,8 +9,10 @@ public class LetterGridProcessorTest
 {
 	private File threeByThreeInput;
 	private File fourByFourInput;
+	private String inputLine = "D,O,G";
 	private char[][] threeByThreeSolutionArray = {{'D','O','G'},{'C','A','T'},{'R','A','T'}};
 	private char[][] fourByFourSolutionArray = {{'F','O','R','K'},{'E','Y','W','Z'},{'H','D','A','E'}};
+	private char[] oneDSolutionArray = {'D','O','G'};
 
 	@Before
 	public void Init(){
@@ -30,8 +32,12 @@ public class LetterGridProcessorTest
 
 	@Test
 	public void ParseStringInto1DCharArray(){
-		String inputLine = "D,O,G";
-		char[] oneDSolutionArray = {'D','O','G'};
+		assertArrayEquals(oneDSolutionArray, LetterGridProcessor.parseStringIntoCharArray(inputLine, 3));
+	}
+
+	@Test
+	public void ParseStringWithMoreLettersThanWidthIntoCharArray(){
+		inputLine += ",O";
 		assertArrayEquals(oneDSolutionArray, LetterGridProcessor.parseStringIntoCharArray(inputLine, 3));
 	}
 }
