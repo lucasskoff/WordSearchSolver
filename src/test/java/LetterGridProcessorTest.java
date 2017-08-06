@@ -11,7 +11,7 @@ public class LetterGridProcessorTest
 	private File fourByFourInput;
 	private String inputLine = "D,O,G";
 	private char[][] threeByThreeSolutionArray = {{'D','O','G'},{'C','A','T'},{'R','A','T'}};
-	private char[][] fourByFourSolutionArray = {{'F','O','R','K'},{'E','Y','W','Z'},{'H','D','A','E'}};
+	private char[][] fourByFourSolutionArray = {{'F','O','R','K'},{'E','Y','W','Z'},{'G','O','T','O'},{'H','D','A','E'}};
 	private char[] oneDSolutionArray = {'D','O','G'};
 
 	@Before
@@ -39,5 +39,15 @@ public class LetterGridProcessorTest
 	public void ParseStringWithMoreLettersThanWidthIntoCharArray(){
 		inputLine += ",O";
 		assertArrayEquals(oneDSolutionArray, LetterGridProcessor.parseStringIntoCharArray(inputLine, 3));
+	}
+
+	@Test
+	public void ThreeByThreeGridFromFileOutputsCorrect2DCharArray(){
+		assertArrayEquals(threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(threeByThreeInput));
+	}
+
+	@Test
+	public void FourByFourGridFromFileOutputsCorrect2DCharArray(){
+		assertArrayEquals(fourByFourSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(fourByFourInput));
 	}
 }

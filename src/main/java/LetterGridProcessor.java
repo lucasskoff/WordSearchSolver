@@ -8,9 +8,15 @@ class LetterGridProcessor
 		try {
 			Scanner scanner = new Scanner(file);
 			scanner.nextLine(); //Throw away top line as it is only words.
-			String currentLine = scanner.nextLine();
-			int widthHeight = Integer.divideUnsigned(currentLine.length(),2); //Removing commas from count.
+			String topLineOfGrid = scanner.nextLine(); //Need to scan in top line outside of loop to determine size of char array.
+			int widthHeight = Integer.divideUnsigned(topLineOfGrid.length(),2) + 1; //Removing commas from count.
 			char[][] letterGrid = new char[widthHeight][widthHeight];
+			letterGrid[0] = parseStringIntoCharArray(topLineOfGrid, widthHeight);
+			int rowIndex = 1;
+			while(scanner.hasNextLine()){
+				letterGrid[rowIndex] = parseStringIntoCharArray(scanner.nextLine(), widthHeight);
+				rowIndex++;
+			}
 			return letterGrid;
 		}catch(FileNotFoundException e){
 			e.printStackTrace();
