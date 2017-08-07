@@ -11,59 +11,26 @@ import java.util.List;
 
 public class LetterGridProcessorTest
 {
-	private File threeByThreeFile;
-	private File fourByFourFile;
-	private File bigGridFromKataFile;
-	private File gridWhereAllLettersAreDFile;
-	private String inputLine = "D,O,G";
-	private char[][] threeByThreeSolutionArray = {{'D','O','G'},{'C','A','T'},{'R','A','T'}};
-	private char[][] fourByFourSolutionArray = {{'F','O','R','K'},{'E','Y','W','Z'},{'G','O','T','O'},{'H','D','A','E'}};
-	private char[][] allLettersDArray = {{'D','D','D'},{'D','D','D'},{'D','D','D'}};
-	private char[] oneDSolutionArray = {'D','O','G'};
-	private char[][] bigGridFromKata = {
-			{'U','M','K','H','U','L','K','I','N','V','J','O','C','W','E'},
-			{'L','L','S','H','K','Z','Z','W','Z','C','G','J','U','Y','G'},
-			{'H','S','U','P','J','P','R','J','D','H','S','B','X','T','G'},
-			{'B','R','J','S','O','E','Q','E','T','I','K','K','G','L','E'},
-			{'A','Y','O','A','G','C','I','R','D','Q','H','R','T','C','D'},
-			{'S','C','O','T','T','Y','K','Z','R','E','P','P','X','P','F'},
-			{'B','L','Q','S','L','N','E','E','E','V','U','L','F','M','Z'},
-			{'O','K','R','I','K','A','M','M','R','M','F','B','A','P','P'},
-			{'N','U','I','I','Y','H','Q','M','E','M','Q','R','Y','F','S'},
-			{'E','Y','Z','Y','G','K','Q','J','P','C','Q','W','Y','A','K'},
-			{'S','J','F','Z','M','Q','I','B','D','B','E','M','K','W','D'},
-			{'T','G','L','B','H','C','B','E','C','H','T','O','Y','I','K'},
-			{'O','J','Y','E','U','L','N','C','C','L','Y','B','Z','U','H'},
-			{'W','Z','M','I','S','U','K','U','R','B','I','D','U','X','S'},
-			{'K','Y','L','B','Q','Q','P','M','D','F','C','K','E','A','B'}};
-	private HashMap<Character, List<Point>> threeByThreeMap;
-	private HashMap<Character, List<Point>> fourByFourMap;
-	private HashMap<Character, List<Point>> allLettersDMap;
+	private PublicTestObjects publicTestObjects;
 
 	@Before
 	public void Init(){
-		threeByThreeFile = new File("resources/horizontalWordsThreeByThreeGrid");
-		fourByFourFile = new File("resources/horizontalWordsFourByFourGrid.txt");
-		bigGridFromKataFile = new File("resources/bigGridFromKata");
-		gridWhereAllLettersAreDFile = new File("resources/threeByThreegridWhereEveryLetterIsD");
-		threeByThreeMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(threeByThreeFile));
-		fourByFourMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(fourByFourFile));
-		allLettersDMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(gridWhereAllLettersAreDFile));
+		publicTestObjects = new PublicTestObjects();
 	}
 
 	@Test
 	public void ThreeByThreeGridFromFileOutputs2DArrayOfCorrectSize(){
-		assertEquals(threeByThreeSolutionArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(threeByThreeFile).length);
+		assertEquals(publicTestObjects.threeByThreeSolutionArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(publicTestObjects.threeByThreeFile).length);
 	}
 
 	@Test
 	public void FourByFourGridFromFileOutputs2DArrayOfCorrectSize(){
-		assertEquals(fourByFourSolutionArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(fourByFourFile).length);
+		assertEquals(publicTestObjects.fourByFourSolutionArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(publicTestObjects.fourByFourFile).length);
 	}
 
 	@Test
 	public void BigGridFromKataOutputs2DArrayOfCorrectSize(){
-		assertEquals(bigGridFromKata.length, LetterGridProcessor.parseGridFromFileAsCharArray(bigGridFromKataFile).length);
+		assertEquals(publicTestObjects.bigGridFromKata.length, LetterGridProcessor.parseGridFromFileAsCharArray(publicTestObjects.bigGridFromKataFile).length);
 	}
 
 	@Test
@@ -74,56 +41,56 @@ public class LetterGridProcessorTest
 	@Test
 	public void InvalidNumberOfRowsAreIgnored(){
 		File invalidNumberOfRows = new File("resources/3x4GridWithMoreColumnsThanRows");
-		assertEquals(threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(invalidNumberOfRows));
+		assertEquals(publicTestObjects.threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(invalidNumberOfRows));
 	}
 
 	@Test
 	public void ParseStringInto1DCharArray(){
-		assertArrayEquals(oneDSolutionArray, LetterGridProcessor.parseStringIntoCharArray(inputLine, 3));
+		assertArrayEquals(publicTestObjects.oneDSolutionArray, LetterGridProcessor.parseStringIntoCharArray(publicTestObjects.inputLine, 3));
 	}
 
 	@Test
 	public void ParseStringWithMoreLettersThanWidthIntoCharArray(){
-		inputLine += ",O";
-		assertArrayEquals(oneDSolutionArray, LetterGridProcessor.parseStringIntoCharArray(inputLine, 3));
+		publicTestObjects.inputLine += ",O";
+		assertArrayEquals(publicTestObjects.oneDSolutionArray, LetterGridProcessor.parseStringIntoCharArray(publicTestObjects.inputLine, 3));
 	}
 
 	@Test
 	public void ThreeByThreeGridFromFileOutputsCorrect2DCharArray(){
-		assertArrayEquals(threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(threeByThreeFile));
+		assertArrayEquals(publicTestObjects.threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(publicTestObjects.threeByThreeFile));
 	}
 
 	@Test
 	public void FourByFourGridFromFileOutputsCorrect2DCharArray(){
-		assertArrayEquals(fourByFourSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(fourByFourFile));
+		assertArrayEquals(publicTestObjects.fourByFourSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(publicTestObjects.fourByFourFile));
 	}
 
 	@Test
 	public void BigGridFromKataFileOutputsCorrect2DCharArray(){
-		assertArrayEquals(bigGridFromKata, LetterGridProcessor.parseGridFromFileAsCharArray(bigGridFromKataFile));
+		assertArrayEquals(publicTestObjects.bigGridFromKata, LetterGridProcessor.parseGridFromFileAsCharArray(publicTestObjects.bigGridFromKataFile));
 	}
 
 	@Test
 	public void SizeOfHashMapValueListForLetterDFromSimple3x3Grid(){
-		assertEquals(1, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(threeByThreeMap, threeByThreeSolutionArray).get('D').size());
+		assertEquals(1, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(publicTestObjects.threeByThreeMap, publicTestObjects.threeByThreeSolutionArray).get('D').size());
 	}
 
 	@Test
 	public void PointsInHashMapValueListAreCorrectForSimple3x3Grid(){
 		List<Point> correctPoints = new ArrayList<>();
 		correctPoints.add(new Point(0,0));
-		assertEquals(correctPoints, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(threeByThreeMap, threeByThreeSolutionArray).get('D'));
+		assertEquals(correctPoints, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(publicTestObjects.threeByThreeMap, publicTestObjects.threeByThreeSolutionArray).get('D'));
 	}
 
 	@Test
 	public void SizeOfHashMapValueListFor4x4Grid(){
-		HashMap<Character, List<Point>> defendantMap = LetterGridProcessor.populateHashMapListOfPointsFirstLetter(fourByFourMap,fourByFourSolutionArray);
+		HashMap<Character, List<Point>> defendantMap = LetterGridProcessor.populateHashMapListOfPointsFirstLetter(publicTestObjects.fourByFourMap, publicTestObjects.fourByFourSolutionArray);
 		assertEquals(2, defendantMap.get('F').size() + defendantMap.get('G').size());
 	}
 
 	@Test
 	public void PointsInHashMapAreCorrectFor4x4Grid(){
-		assertEquals(initializeFourByFourHashMap(), LetterGridProcessor.populateHashMapListOfPointsFirstLetter(fourByFourMap, fourByFourSolutionArray));
+		assertEquals(initializeFourByFourHashMap(), LetterGridProcessor.populateHashMapListOfPointsFirstLetter(publicTestObjects.fourByFourMap, publicTestObjects.fourByFourSolutionArray));
 	}
 
 	@Test
@@ -133,7 +100,7 @@ public class LetterGridProcessorTest
 								 new Point(0, 1), new Point(1, 1), new Point(2, 1),
 								 new Point(0, 2), new Point(1, 2), new Point(2, 2)};
 		correctHashMap.put('D', Arrays.asList(correctPoints));
-		assertEquals(correctHashMap, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(allLettersDMap, allLettersDArray));
+		assertEquals(correctHashMap, LetterGridProcessor.populateHashMapListOfPointsFirstLetter(publicTestObjects.allLettersDMap, publicTestObjects.allLettersDArray));
 	}
 
 	private HashMap<Character, List<Point>> initializeFourByFourHashMap(){
