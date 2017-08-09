@@ -17,7 +17,6 @@ public class WordSearchSolverTest
 	public void ReturnPointsOfHorizontalWordDogInSimpleThreeByThree(){
 		Point[] correctPointsDogArray = {new Point(0,0), new Point(1,0), new Point(2,0)};
 		List<Point> correctPointsList = Arrays.asList(correctPointsDogArray);
-		//public boolean wordFinder(Direction direction, Point firstLetterPoint, String wordToFind, char[][] letterGrid, List<Point> populatedList)
 		List<Point> pointsToTest = new ArrayList<Point>();
 		if(WordSearchSolver.wordFinder(Direction.Horizontal, new Point(0,0), "Dog", threeByThreeSolutionArray, pointsToTest))
 		{
@@ -25,5 +24,11 @@ public class WordSearchSolverTest
 		}else {
 			Assert.fail("Incapable of finding word in test ReturnPointsOfHorizontalWordDogInSimpleThreeByThree.");
 		}
+	}
+
+	@Test
+	public void ReturnFalseIfGridIsTooSmallInHorizontalDirectionForWordFromStartingPoint(){
+		char[][] twoBytwoGrid = {{'D','O'},{'C','A'}};
+		assertEquals(false, WordSearchSolver.wordFinder(Direction.Horizontal, new Point(0,0), "Dog", twoBytwoGrid, new ArrayList<Point>()));
 	}
 }
