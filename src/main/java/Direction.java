@@ -11,11 +11,11 @@ public enum Direction
 		this.ydir = ydir;
 	}
 
-	private int xDir(){
+	public int xDir(){
 		return xdir;
 	}
 
-	private int yDir(){
+	public int yDir(){
 		return ydir;
 	}
 }
