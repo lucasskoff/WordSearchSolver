@@ -9,7 +9,7 @@ class WordSearchSolver
 	{
 		int XIndexOfLastLetter = (int)firstLetterPoint.getX() + (wordLength - 1) * direction.xDir();
 		int YIndexOfLastLetter = (int)firstLetterPoint.getY() + (wordLength - 1) * direction.yDir();
-		return XIndexOfLastLetter >= 0 && XIndexOfLastLetter <= wordLength - 1 && YIndexOfLastLetter >= 0 && YIndexOfLastLetter <= wordLength - 1;
+		return XIndexOfLastLetter >= 0 && XIndexOfLastLetter <= gridLength - 1 && YIndexOfLastLetter >= 0 && YIndexOfLastLetter <= gridLength - 1;
 	}
 
 	static String wordFinder(Direction direction, Point firstLetterPoint, String wordToFind, char[][] letterGrid)

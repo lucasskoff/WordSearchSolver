@@ -21,99 +21,158 @@ public class WordSearchSolverTest
 			{'A','O','O','O','A'},
 			{'G','A','G','A','G'}
 	};
+
+	private Point pointZeroZero;
+	private String dogString;
+	@Before
+	public void init()
+	{
+		pointZeroZero = new Point(0, 0);
+		dogString = "Dog";
+	}
+
 	@Test
 	public void ReturnPointsOfHorizontalForwardWordDogInSimpleThreeByThreeGrid()
 	{
-		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Horizontal_Forward, new Point(2,2), "Dog", fiveByFiveGridForAllDirections));
+		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Horizontal_Forward, new Point(2,2), dogString, fiveByFiveGridForAllDirections));
 	}
 
 	@Test
 	public void ReturnPointsOfDiagonalForwardDownwardWordDogInSimpleThreeByThreeGrid()
 	{
-		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Diagonal_Forward_Downward, new Point(2,2), "Dog", fiveByFiveGridForAllDirections));
+		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Diagonal_Forward_Downward, new Point(2,2), dogString, fiveByFiveGridForAllDirections));
 	}
 
 	@Test
 	public void ReturnPointsOfVerticalDownwardWordDogInSimpleThreeByThreeGrid()
 	{
-		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Vertical_Downward, new Point(2,2), "Dog", fiveByFiveGridForAllDirections));
+		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Vertical_Downward, new Point(2,2), dogString, fiveByFiveGridForAllDirections));
 	}
 
 	@Test
 	public void ReturnPointsOfDiagonalBackwardDownwardWordDogInSimpleThreeByThreeGrid()
 	{
-		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Diagonal_Backward_Downward, new Point(2,2), "Dog", fiveByFiveGridForAllDirections));
+		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Diagonal_Backward_Downward, new Point(2,2), dogString, fiveByFiveGridForAllDirections));
 	}
 
 	@Test
 	public void ReturnPointsOfHorizontalBackwardWordDogInSimpleThreeByThreeGrid()
 	{
-		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Horizontal_Backward, new Point(2,2), "Dog", fiveByFiveGridForAllDirections));
+		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Horizontal_Backward, new Point(2,2), dogString, fiveByFiveGridForAllDirections));
 	}
 
 	@Test
 	public void ReturnPointsOfDiagonalBackwardUpwardWordDogInSimpleThreeByThreeGrid()
 	{
-		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Diagonal_Backward_Upward, new Point(2,2), "Dog", fiveByFiveGridForAllDirections));
+		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Diagonal_Backward_Upward, new Point(2,2), dogString, fiveByFiveGridForAllDirections));
 	}
 
 	@Test
 	public void ReturnPointsOfVerticalUpwardWordDogInSimpleThreeByThreeGrid()
 	{
-		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Vertical_Upward, new Point(2,2), "Dog", fiveByFiveGridForAllDirections));
+		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Vertical_Upward, new Point(2,2), dogString, fiveByFiveGridForAllDirections));
 	}
 
 	@Test
 	public void ReturnPointsOfDiagonalForwardWordDogInSimpleThreeByThreeGrid()
 	{
-		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Diagonal_Forward_Upward, new Point(2,2), "Dog", fiveByFiveGridForAllDirections));
+		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Diagonal_Forward_Upward, new Point(2,2), dogString, fiveByFiveGridForAllDirections));
 	}
 
 	@Test
-	public void HorizontalForwardWordCanFitInThreeLetterGrid()
+	public void ThreeLetterHorizontalForwardWordCanFitInThreeLetterGrid()
 	{
-		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Horizontal_Forward, new Point(0,0),3, threeByThreeGrid.length));
+	assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Horizontal_Forward, new Point(0,0), dogString.length(), threeByThreeGrid.length));
 	}
 
 	@Test
-	public void DiagonalForwardDownwardWordCanFitInThreeLetterGrid()
+	public void ThreeLetterDiagonalForwardDownwardWordCanFitInThreeLetterGrid()
 	{
-		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Forward_Downward, new Point(0,0),3, threeByThreeGrid.length));
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Forward_Downward, new Point(0,0), dogString.length(), threeByThreeGrid.length));
 	}
 
 	@Test
-	public void VerticalDownwardWordCanFitInThreeLetterGrid()
+	public void ThreeLetterVerticalDownwardWordCanFitInThreeLetterGrid()
 	{
-		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Vertical_Downward, new Point(0,0),3, threeByThreeGrid.length));
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Vertical_Downward, new Point(0,0), dogString.length(), threeByThreeGrid.length));
 	}
 
 	@Test
-	public void DiagonalBackwardDownwardWordCanFitInThreeLetterGrid()
+	public void ThreeLetterDiagonalBackwardDownwardWordCanFitInThreeLetterGrid()
 	{
-		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Backward_Downward, new Point(2,0),3, threeByThreeGrid.length));
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Backward_Downward, new Point(2,0), dogString.length(), threeByThreeGrid.length));
 	}
 
 	@Test
-	public void HorizontalBackwardWordCanFitInThreeLetterGrid()
+	public void ThreeLetterHorizontalBackwardWordCanFitInThreeLetterGrid()
 	{
-		assertEquals(true, WordSearchSolver.canWordFitInDirection(Direction.Horizontal_Backward, new Point(2,0),3, threeByThreeGrid.length));
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Horizontal_Backward, new Point(2,0), dogString.length(), threeByThreeGrid.length));
 	}
 
 	@Test
-	public void DiagonalBackwardUpwardWordCanFitInThreeLetterGrid()
+	public void ThreeLetterDiagonalBackwardUpwardWordCanFitInThreeLetterGrid()
 	{
-		assertEquals(true, WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Backward_Upward, new Point(2,2),3, threeByThreeGrid.length));
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Backward_Upward, new Point(2,2), dogString.length(), threeByThreeGrid.length));
 	}
 
 	@Test
-	public void VerticalUpwardWordCanFitInThreeLetterGrid()
+	public void ThreeLetterVerticalUpwardWordCanFitInThreeLetterGrid()
 	{
-		assertEquals(true, WordSearchSolver.canWordFitInDirection(Direction.Vertical_Upward, new Point(0,2),3, threeByThreeGrid.length));
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Vertical_Upward, new Point(0,2), dogString.length(), threeByThreeGrid.length));
 	}
 
 	@Test
-	public void DiagonalForwardUpwardWordCanFitInThreeLetterGrid()
+	public void ThreeLetterDiagonalForwardUpwardWordCanFitInThreeLetterGrid()
 	{
-		assertEquals(true, WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Forward_Upward, new Point(0,2),3, threeByThreeGrid.length));
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Forward_Upward, new Point(0,2), dogString.length(), threeByThreeGrid.length));
 	}
+
+	@Test
+	public void ThreeLetterHorizontalForwardWordCanNotFitInTwoLetterGrid()
+	{
+		assertFalse(WordSearchSolver.canWordFitInDirection(Direction.Horizontal_Forward, pointZeroZero, dogString.length(), twoBytwoGrid.length));
+	}
+
+	@Test
+	public void ThreeLetterDiagonalForwardDownwardWordCanNotFitInTwoLetterGrid()
+	{
+		assertFalse(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Forward_Downward, pointZeroZero, dogString.length(), twoBytwoGrid.length));
+	}
+
+	@Test
+	public void ThreeLetterVerticalDownwardWordCanNotFitInTwoLetterGrid()
+	{
+		assertFalse(WordSearchSolver.canWordFitInDirection(Direction.Vertical_Downward, pointZeroZero, dogString.length(), twoBytwoGrid.length));
+	}
+
+	@Test
+	public void ThreeLetterDiagonalBackwardDownwardWordCanNotFitInTwoLetterGrid()
+	{
+		assertFalse(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Backward_Downward, pointZeroZero, dogString.length(), twoBytwoGrid.length));
+	}
+
+	@Test
+	public void ThreeLetterHorizontalBackwardWordCanNotFitInTwoLetterGrid()
+	{
+		assertFalse(WordSearchSolver.canWordFitInDirection(Direction.Horizontal_Backward, pointZeroZero, dogString.length(), twoBytwoGrid.length));
+	}
+
+	@Test
+	public void ThreeLetterDiagonalBackwardUpwardWordCanNotFitInTwoLetterGrid()
+	{
+		assertFalse(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Backward_Upward, pointZeroZero, dogString.length(), twoBytwoGrid.length));
+	}
+
+	@Test
+	public void ThreeLetterVerticalUpwardWordCanFitInTwoLetterGrid()
+	{
+		assertFalse(WordSearchSolver.canWordFitInDirection(Direction.Vertical_Upward, pointZeroZero, dogString.length(), twoBytwoGrid.length));
+	}
+
+	@Test
+	public void ThreeLetterDiagonalForwardUpwardWordCanNotFitInTwoLetterGrid()
+	{
+		assertFalse(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Forward_Upward, pointZeroZero, dogString.length(), twoBytwoGrid.length));
+	}
+
 }
