@@ -7,6 +7,11 @@ import java.util.Scanner;
 
 class LetterGridProcessor
 {
+	/**
+	 * Takes in an already initialized hash map of the first letters and scans the grid to determine where each of those letters resides.
+	 * This method will allow us to be a lot more efficient when we actually go hunt down the words.
+	 * Based off a common human strategy to solve word search puzzles.
+	 */
 	static HashMap<Character, List<Point>> populateHashMapListOfPointsFirstLetter(HashMap<Character, List<Point>> hMap, char[][] letterGrid){
 		for(int i = 0; i < letterGrid.length; i++){
 			for(int j = 0; j < letterGrid[i].length; j++){
@@ -18,6 +23,10 @@ class LetterGridProcessor
 		return hMap;
 	}
 
+	/**
+	 * Uses the java scanner to turn a text file of comma seperated characters into a two dimensional char array.
+	 * Created as a char array will be much easier to use than multiple scanners.
+	 */
 	static char[][] parseGridFromFileAsCharArray(File file) {
 		try {
 			Scanner scanner = new Scanner(file);
@@ -43,6 +52,10 @@ class LetterGridProcessor
 		}
 	}
 
+	/**
+	 * Creates a one dimensional char array from a String. Used as a helper method for above, only set to package-private
+	 * for testing purposes.
+	 */
 	static char[] parseStringIntoCharArray(String inputLine, int width){
 		Scanner scanner = new Scanner(inputLine);
 		scanner.useDelimiter(WordSearchLiterals.LETTER_GRID_DELIMITER);
