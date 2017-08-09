@@ -1,25 +1,18 @@
+import org.apache.commons.lang3.StringUtils;
+
 import java.awt.*;
 import java.util.List;
 
 class WordSearchSolver
 {
-	static boolean wordFinder(Direction direction, Point firstLetterPoint, String wordToFind, char[][] letterGrid, List<Point> populatedList)
+	static String wordFinder(Direction direction, Point firstLetterPoint, String wordToFind, char[][] letterGrid)
 	{
-		/*int indexOfLastLetterHorizontalDirection = ((int)firstLetterPoint.getX() + direction.xDir() * wordToFind.length()) + 1;
-		int indexOfLastLetterVerticalDirection = ((int)firstLetterPoint.getY() + direction.yDir() * wordToFind.length()) + 1;
-		if(indexOfLastLetterHorizontalDirection < 0 || indexOfLastLetterHorizontalDirection > letterGrid.length){
-			return false;
-		}
-		if(indexOfLastLetterVerticalDirection < 0 || indexOfLastLetterVerticalDirection > letterGrid.length){
-			return false;
-		}*/
-		StringBuilder buildWord = new StringBuilder();
+		String buildWord = StringUtils.EMPTY;
 		for(int i = 0; i < wordToFind.length(); i++){
 			int xIndex = (int)firstLetterPoint.getX() + i * direction.xDir();
 			int yIndex = (int)firstLetterPoint.getY() + i * direction.yDir();
-			buildWord.append(letterGrid[yIndex][xIndex]);
-			populatedList.add(new Point(xIndex, yIndex));
+			buildWord += letterGrid[yIndex][xIndex];
 		}
-		return true;
+		return buildWord;
 	}
 }
