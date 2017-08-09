@@ -72,4 +72,52 @@ public class WordSearchSolverTest
 	{
 		assertEquals("DOG", WordSearchSolver.wordFinder(Direction.Diagonal_Forward_Upward, new Point(0,2), "Dog", threeByThreeDiagonalForwardUpwardArray));
 	}
+
+	@Test
+	public void HorizontalForwardWordCanFitInThreeLetterGrid()
+	{
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Horizontal_Forward, new Point(0,0),3, threeByThreeHorizontalForwardArray.length));
+	}
+
+	@Test
+	public void DiagonalForwardDownwardWordCanFitInThreeLetterGrid()
+	{
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Forward_Downward, new Point(0,0),3, threeByThreeHorizontalForwardArray.length));
+	}
+
+	@Test
+	public void VerticalDownwardWordCanFitInThreeLetterGrid()
+	{
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Vertical_Downward, new Point(0,0),3, threeByThreeHorizontalForwardArray.length));
+	}
+
+	@Test
+	public void DiagonalBackwardDownwardWordCanFitInThreeLetterGrid()
+	{
+		assertTrue(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Backward_Downward, new Point(2,0),3, threeByThreeHorizontalForwardArray.length));
+	}
+
+	@Test
+	public void HorizontalBackwardWordCanFitInThreeLetterGrid()
+	{
+		assertEquals(true, WordSearchSolver.canWordFitInDirection(Direction.Horizontal_Backward, new Point(2,0),3, threeByThreeHorizontalForwardArray.length));
+	}
+
+	@Test
+	public void DiagonalBackwardUpwardWordCanFitInThreeLetterGrid()
+	{
+		assertEquals(true, WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Backward_Upward, new Point(2,2),3, threeByThreeHorizontalForwardArray.length));
+	}
+
+	@Test
+	public void VerticalUpwardWordCanFitInThreeLetterGrid()
+	{
+		assertEquals(true, WordSearchSolver.canWordFitInDirection(Direction.Vertical_Upward, new Point(0,2),3, threeByThreeHorizontalForwardArray.length));
+	}
+
+	@Test
+	public void DiagonalForwardUpwardWordCanFitInThreeLetterGrid()
+	{
+		assertEquals(true, WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Forward_Upward, new Point(0,2),3, threeByThreeHorizontalForwardArray.length));
+	}
 }
