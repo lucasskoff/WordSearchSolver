@@ -12,6 +12,7 @@ import java.util.Arrays;
 
 public class WordSearchSolverTest
 {
+	char[][] twoBytwoGrid = {{'D','O'},{'C','A'}};
 	private char[][] threeByThreeSolutionArray = {{'D','O','G'},{'C','A','T'},{'R','A','T'}};
 	@Test
 	public void ReturnPointsOfHorizontalWordDogInSimpleThreeByThree(){
@@ -30,5 +31,10 @@ public class WordSearchSolverTest
 	public void ReturnFalseIfGridIsTooSmallInHorizontalDirectionForWordFromStartingPoint(){
 		char[][] twoBytwoGrid = {{'D','O'},{'C','A'}};
 		assertEquals(false, WordSearchSolver.wordFinder(Direction.Horizontal, new Point(0,0), "Dog", twoBytwoGrid, new ArrayList<Point>()));
+	}
+
+	@Test
+	public void ReturnFalseIfGridIsTooSmallInVerticalDirectionForWordFromStartingPoint(){
+		assertEquals(false, WordSearchSolver.wordFinder(Direction.Vertical, new Point(0,0), "Dog", twoBytwoGrid, new ArrayList<Point>()));
 	}
 }

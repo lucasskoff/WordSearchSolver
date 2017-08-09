@@ -6,7 +6,11 @@ class WordSearchSolver
 	static boolean wordFinder(Direction direction, Point firstLetterPoint, String wordToFind, char[][] letterGrid, List<Point> populatedList)
 	{
 		int indexOfLastLetterHorizontalDirection = direction.xDir() * wordToFind.length();
+		int indexOfLastLetterVerticalDirection = direction.yDir() * wordToFind.length();
 		if(indexOfLastLetterHorizontalDirection < 0 || indexOfLastLetterHorizontalDirection > letterGrid.length){
+			return false;
+		}
+		if(indexOfLastLetterVerticalDirection < 0 || indexOfLastLetterVerticalDirection > letterGrid.length){
 			return false;
 		}
 		StringBuilder buildWord = new StringBuilder();
