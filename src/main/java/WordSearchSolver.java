@@ -12,10 +12,10 @@ class WordSearchSolver
 		return XIndexOfLastLetter >= 0 && XIndexOfLastLetter <= gridLength - 1 && YIndexOfLastLetter >= 0 && YIndexOfLastLetter <= gridLength - 1;
 	}
 
-	static String wordFinder(Direction direction, Point firstLetterPoint, String wordToFind, char[][] letterGrid)
+	static String wordFinder(Direction direction, Point firstLetterPoint, int wordLength, char[][] letterGrid)
 	{
 		String buildWord = StringUtils.EMPTY;
-		for(int i = 0; i < wordToFind.length(); i++){
+		for(int i = 0; i < wordLength; i++){
 			int xIndex = (int)firstLetterPoint.getX() + i * direction.xDir();
 			int yIndex = (int)firstLetterPoint.getY() + i * direction.yDir();
 			buildWord += letterGrid[yIndex][xIndex];
