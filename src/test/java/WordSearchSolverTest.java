@@ -176,4 +176,12 @@ public class WordSearchSolverTest
 		assertFalse(WordSearchSolver.canWordFitInDirection(Direction.Diagonal_Forward_Upward, pointZeroZero, dogStringLength, twoBytwoGrid.length));
 	}
 
+	@Test
+	public void ReturnCorrectPointsForWordDogInHorizontalDirection()
+	{
+		Point[] correctPointsArray = {new Point(0,0), new Point(1,0), new Point(2,0)};
+		List<Point> correctPointsList = Arrays.asList(correctPointsArray);
+		assertEquals(correctPointsList, WordSearchSolver.getPointsForWordFromDirection(Direction.Horizontal_Forward, new Point(0,0), dogStringLength, threeByThreeGrid));
+	}
+
 }
