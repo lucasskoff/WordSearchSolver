@@ -39,4 +39,12 @@ public class ControllerTest
 		correctHashMap.put("CAT", Arrays.asList(correctPointsCat));
 		assertEquals(correctHashMap, Controller.wordSearchSolutionFromFile(filename));
 	}
+
+	@Test
+	public void CorrectHashMapForGridWithTwoLettersOutOfOneLetter(){
+		String filename = "resources/horizontalAndVerticalWordComingFromSameLetter.txt";
+		Point[] correctPointsDonut = {new Point(0,0), new Point(0, 1), new Point(0, 2), new Point(0,3), new Point(0,4)};
+		correctHashMap.put("DONUT", Arrays.asList(correctPointsDonut));
+		assertEquals(correctHashMap, Controller.wordSearchSolutionFromFile(filename));
+	}
 }
