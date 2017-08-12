@@ -7,7 +7,7 @@ import java.util.List;
 public class Controller
 {
 	 static HashMap<String, List<Point>> wordSearchSolutionFromFile(String filename){
-	 	//List<Direction> directionsList = getCompleteListOfDirections();
+	 	List<Direction> directionsList = getCompleteListOfDirections();
 		char[][] letterGrid = LetterGridProcessor.parseGridFromFileAsCharArray(filename);
 		List<String> wordList = WordListProcessor.createArrayListOfWordsFromFileName(filename);
 		HashMap<Character, List<Point>> firstLetterMap = WordListProcessor.createHashMapOfWordFirstLetters(wordList);
@@ -15,12 +15,14 @@ public class Controller
 		HashMap<String, List<Point>> completeMapOfSolutions = new HashMap<>();
 
 		for(String currentWord : wordList){
-			for(Point currentPoint : firstLetterMap.get(currentWord.charAt(0))){
+			for(Point currentPoint : firstLetterMap.get(currentWord.charAt(0))) {
+				for (Direction currentDirection : directionsList) {
 
-				if(WordSearchSolver.canWordFitInDirection(Direction.Horizontal_Forward, currentPoint, currentWord.length(), letterGrid.length)
-						&& WordSearchSolver.wordFinder(Direction.Horizontal_Forward, currentPoint, currentWord.length(), letterGrid).equalsIgnoreCase(currentWord)){
+					if (WordSearchSolver.canWordFitInDirection(currentDirection, currentPoint, currentWord.length(), letterGrid.length)
+							&& WordSearchSolver.wordFinder(currentDirection, currentPoint, currentWord.length(), letterGrid).equalsIgnoreCase(currentWord)) {
 
-					completeMapOfSolutions.put(currentWord.toUpperCase(), WordSearchSolver.getPointsForWordFromDirection(Direction.Horizontal_Forward, currentPoint, currentWord.length()));
+						completeMapOfSolutions.put(currentWord.toUpperCase(), WordSearchSolver.getPointsForWordFromDirection(currentDirection, currentPoint, currentWord.length()));
+					}
 				}
 			}
 		}
