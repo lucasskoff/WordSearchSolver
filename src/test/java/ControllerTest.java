@@ -1,3 +1,4 @@
+import org.junit.Before;
 import org.junit.Test;
 
 import java.awt.*;
@@ -9,22 +10,32 @@ import static org.junit.Assert.assertEquals;
 
 public class ControllerTest
 {
+	HashMap<String, List<Point>> correctHashMap;
+	@Before
+	public void init(){
+		correctHashMap = new HashMap<String, List<Point>>();
+		Point[] correctPoints = {new Point(0,0), new Point(1,0), new Point(2,0)};
+		correctHashMap.put("DOG", Arrays.asList(correctPoints));
+	}
+
 	@Test
 	public void CorrectHashMapFromSimpleThreeByThreeWithOneWord(){
 		String filename = "resources/horizontalWordThreeByThreeGrid.txt";
-		HashMap<String, List<Point>> correctHashMap = new HashMap<String, List<Point>>();
-		Point[] correctPoints = {new Point(0,0), new Point(1,0), new Point(2,0)};
-		correctHashMap.put("DOG", Arrays.asList(correctPoints));
 		assertEquals(correctHashMap, Controller.wordSearchSolutionFromFile(filename));
 	}
 
 	@Test
-	public void CorrectHashMapForTwoVerticalWords(){
+	public void CorrectHashMapForTwoHorizontalWords(){
 		String filename = "resources/horizontalWordsThreeByThreeGrid";
-		HashMap<String, List<Point>> correctHashMap = new HashMap<String, List<Point>>();
-		Point[] correctPointsDog = {new Point(0,0), new Point(1,0), new Point(2,0)};
 		Point[] correctPointsCat = {new Point(0, 1), new Point(1,1), new Point(2,1)};
-		correctHashMap.put("DOG", Arrays.asList(correctPointsDog));
+		correctHashMap.put("CAT", Arrays.asList(correctPointsCat));
+		assertEquals(correctHashMap, Controller.wordSearchSolutionFromFile(filename));
+	}
+
+	@Test
+	public void CorrectHashMapForTwoWordHorizontalAndVertical(){
+		String filename = "resources/horizontalAndVerticalWordsFourByFour.txt";
+		Point[] correctPointsCat = {new Point(0,1), new Point(0,2), new Point(0, 3)};
 		correctHashMap.put("CAT", Arrays.asList(correctPointsCat));
 		assertEquals(correctHashMap, Controller.wordSearchSolutionFromFile(filename));
 	}
