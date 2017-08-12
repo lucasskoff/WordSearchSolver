@@ -101,13 +101,13 @@ public class WordListProcessorTest
     @Test
     public void ReadTopLineFromFileContainingSingleWordAndCreateList(){
         wordList.add("DOG");
-        assertEquals(wordList, WordListProcessor.createArrayListOfWordsFromFile(inputFileSingleWordThreeByThreeGrid));
+        assertEquals(wordList, WordListProcessor.createArrayListOfWordsFromFileName("./resources/horizontalWordThreeByThreeGrid.txt"));
     }
 
     @Test
     public void ReadTopLineFromFileContainingMultipleWordsAndCreateList(){
         wordList.add("DOG");
         wordList.add("CAT");
-        assertEquals(wordList, WordListProcessor.createArrayListOfWordsFromFile(inputFileTwoWordsThreeByThreeGrid));
+        assertEquals(wordList, WordListProcessor.createArrayListOfWordsFromFileName("resources/horizontalWordsThreeByThreeGrid"));
     }
 }

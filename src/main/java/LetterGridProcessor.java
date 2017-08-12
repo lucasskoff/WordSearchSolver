@@ -27,9 +27,10 @@ class LetterGridProcessor
 	 * Uses the java scanner to turn a text file of comma seperated characters into a two dimensional char array.
 	 * Created as a char array will be much easier to use than multiple scanners.
 	 */
-	static char[][] parseGridFromFileAsCharArray(File file) {
+	static char[][] parseGridFromFileAsCharArray(String fileName) {
+		File wordSearchFile = new File(fileName);
 		try {
-			Scanner scanner = new Scanner(file);
+			Scanner scanner = new Scanner(wordSearchFile);
 			scanner.nextLine(); //Throw away top line as it is only words.
 			String topLineOfGrid = scanner.nextLine(); //Need to scan in top line outside of loop to determine size of char array.
 			int widthHeight = Integer.divideUnsigned(topLineOfGrid.length(),2) + 1; //Removing commas from count.
@@ -47,7 +48,7 @@ class LetterGridProcessor
 			}
 			return letterGrid;
 		}catch(FileNotFoundException e){
-			System.out.println("parseGridFromFileAsCharArray caught FileNotFoundException on filename: " + file.getPath());
+			System.out.println("parseGridFromFileAsCharArray caught FileNotFoundException on filename: " + wordSearchFile.getPath());
 			return new char[0][0];
 		}
 	}

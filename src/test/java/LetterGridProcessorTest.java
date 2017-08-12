@@ -11,10 +11,6 @@ import java.util.List;
 
 public class LetterGridProcessorTest
 {
-	private File threeByThreeFile;
-	private File fourByFourFile;
-	private File bigGridFromKataFile;
-	private File gridWhereAllLettersAreDFile;
 	private String inputLine = "D,O,G";
 	private char[][] threeByThreeSolutionArray = {{'D','O','G'},{'C','A','T'},{'R','A','T'}};
 	private char[][] fourByFourSolutionArray = {{'F','O','R','K'},{'E','Y','W','Z'},{'G','O','T','O'},{'H','D','A','E'}};
@@ -39,42 +35,43 @@ public class LetterGridProcessorTest
 	private HashMap<Character, java.util.List<Point>> threeByThreeMap;
 	private HashMap<Character, java.util.List<Point>> fourByFourMap;
 	private HashMap<Character, List<Point>> allLettersDMap;
+	private String threeByThreeFileName;
+	private String fourByFourFileName;
+	private String bigKataFileName;
 
 	@Before
 	public void Init(){
-		threeByThreeFile = new File("resources/horizontalWordsThreeByThreeGrid");
-		fourByFourFile = new File("resources/horizontalWordsFourByFourGrid.txt");
-		bigGridFromKataFile = new File("resources/bigGridFromKata");
-		gridWhereAllLettersAreDFile = new File("resources/threeByThreegridWhereEveryLetterIsD");
-		threeByThreeMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(threeByThreeFile));
-		fourByFourMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(fourByFourFile));
-		allLettersDMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFile(gridWhereAllLettersAreDFile));
+		threeByThreeFileName = "resources/horizontalWordsThreeByThreeGrid";
+		fourByFourFileName = "resources/horizontalWordsFourByFourGrid.txt";
+		bigKataFileName = "resources/bigGridFromKata";
+		threeByThreeMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFileName(threeByThreeFileName));
+		fourByFourMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFileName(fourByFourFileName));
+		allLettersDMap = WordListProcessor.createHashMapOfWordFirstLetters(WordListProcessor.createArrayListOfWordsFromFileName("resources/threeByThreegridWhereEveryLetterIsD"));
 	}
 
 	@Test
 	public void ThreeByThreeGridFromFileOutputs2DArrayOfCorrectSize(){
-		assertEquals(threeByThreeSolutionArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(threeByThreeFile).length);
+		assertEquals(threeByThreeSolutionArray.length, LetterGridProcessor.parseGridFromFileAsCharArray("resources/horizontalWordsThreeByThreeGrid").length);
 	}
 
 	@Test
 	public void FourByFourGridFromFileOutputs2DArrayOfCorrectSize(){
-		assertEquals(fourByFourSolutionArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(fourByFourFile).length);
+		assertEquals(fourByFourSolutionArray.length, LetterGridProcessor.parseGridFromFileAsCharArray(fourByFourFileName).length);
 	}
 
 	@Test
 	public void BigGridFromKataOutputs2DArrayOfCorrectSize(){
-		assertEquals(bigGridFromKata.length, LetterGridProcessor.parseGridFromFileAsCharArray(bigGridFromKataFile).length);
+		assertEquals(bigGridFromKata.length, LetterGridProcessor.parseGridFromFileAsCharArray(bigKataFileName).length);
 	}
 
 	@Test
 	public void InvalidFileCreates2DArrayOfLengthZero(){
-		assertEquals(0, LetterGridProcessor.parseGridFromFileAsCharArray(new File("invalidFile")).length);
+		assertEquals(0, LetterGridProcessor.parseGridFromFileAsCharArray("invalidFile").length);
 	}
 
 	@Test
 	public void InvalidNumberOfRowsAreIgnored(){
-		File invalidNumberOfRows = new File("resources/3x4GridWithMoreColumnsThanRows");
-		assertEquals(threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(invalidNumberOfRows));
+		assertArrayEquals(threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray("resources/3x4GridWithMoreColumnsThanRows"));
 	}
 
 	@Test
@@ -90,17 +87,17 @@ public class LetterGridProcessorTest
 
 	@Test
 	public void ThreeByThreeGridFromFileOutputsCorrect2DCharArray(){
-		assertArrayEquals(threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(threeByThreeFile));
+		assertArrayEquals(threeByThreeSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(threeByThreeFileName));
 	}
 
 	@Test
 	public void FourByFourGridFromFileOutputsCorrect2DCharArray(){
-		assertArrayEquals(fourByFourSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(fourByFourFile));
+		assertArrayEquals(fourByFourSolutionArray, LetterGridProcessor.parseGridFromFileAsCharArray(fourByFourFileName));
 	}
 
 	@Test
 	public void BigGridFromKataFileOutputsCorrect2DCharArray(){
-		assertArrayEquals(bigGridFromKata, LetterGridProcessor.parseGridFromFileAsCharArray(bigGridFromKataFile));
+		assertArrayEquals(bigGridFromKata, LetterGridProcessor.parseGridFromFileAsCharArray(bigKataFileName));
 	}
 
 	@Test

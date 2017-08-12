@@ -30,7 +30,7 @@ class WordSearchSolver
 		return buildWord;
 	}
 
-	static List<Point> getPointsForWordFromDirection(Direction direction, Point firstLetterPoint, int wordLength, char[][] threeByThreeGrid)
+	static List<Point> getPointsForWordFromDirection(Direction direction, Point firstLetterPoint, int wordLength)
 	{
 		List<Point> pointsList = new ArrayList<Point>();
 		for(int i = 0; i < wordLength; i++){
