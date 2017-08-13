@@ -1,5 +1,3 @@
-import org.apache.commons.lang3.StringUtils;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +21,16 @@ class WordSearchSolver
 	 */
 	static String wordFinder(Direction direction, Point firstLetterPoint, int wordLength, char[][] letterGrid)
 	{
-		String buildWord = StringUtils.EMPTY;
+		StringBuilder buildWord = new StringBuilder();
 		for(int i = 0; i < wordLength; i++){
-			buildWord += letterGrid[getIndexOfNextChar((int)firstLetterPoint.getY(), direction.yDir(), i)][getIndexOfNextChar((int)firstLetterPoint.getX(), direction.xDir(), i)];
+			buildWord.append(letterGrid[getIndexOfNextChar((int) firstLetterPoint.getY(), direction.yDir(), i)][getIndexOfNextChar((int) firstLetterPoint.getX(), direction.xDir(), i)]);
 		}
-		return buildWord;
+		return buildWord.toString();
 	}
 
 	static List<Point> getPointsForWordFromDirection(Direction direction, Point firstLetterPoint, int wordLength)
 	{
-		List<Point> pointsList = new ArrayList<Point>();
+		List<Point> pointsList = new ArrayList<>();
 		for(int i = 0; i < wordLength; i++){
 			pointsList.add(new Point(getIndexOfNextChar((int)firstLetterPoint.getX(), direction.xDir(), i), getIndexOfNextChar((int)firstLetterPoint.getY(), direction.yDir(), i)));
 		}

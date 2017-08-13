@@ -17,9 +17,7 @@ class WordListProcessor
      * Word List processor wrapper using other methods to create ArrayList of Strings.
      */
     static List<String> createArrayListOfWordsFromFileName(String filename){
-        File file = new File(filename);
-        String wordList = readTopLineFromFileIntoString(file);
-        return parseStringAsArrayList(wordList);
+        return parseStringAsArrayList(readTopLineFromFileIntoString(new File(filename)));
     }
 
     /**
@@ -33,7 +31,6 @@ class WordListProcessor
         }catch(FileNotFoundException e){
             return StringUtils.EMPTY;
         }
-
     }
 
     /**
