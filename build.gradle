@@ -1,9 +1,14 @@
 group 'WordSearchSolver'
-version '1.0-SNAPSHOT'
 
 apply plugin: 'java'
 
 sourceCompatibility = 1.8
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'Application'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -14,3 +19,7 @@ dependencies {
     compile 'org.apache.commons:commons-lang3:3.6'
     compile 'org.apache.commons:commons-text:1.1'
 }
+
+
+
+
