@@ -14,4 +14,4 @@ was also the first time I have used Gradle in conjunction with IntelliJ. I chall
 
 
 On the design: I understand my design decisions are a little strange for this one. I decided to do exclusively utility methods to 
-focus on the test driven development aspects. By utilizing utility methods I was able to keep each individual method short and simple and spent far more time focusing on the test cases and structure of the tests. However, I understand this design decision does not show my object oriented skills.
+focus on the test driven development aspects. By utilizing utility methods I was able to keep each individual method short and simple and spent far more time focusing on the test cases and structure of the tests.
